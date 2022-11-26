@@ -45,6 +45,19 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Faster git commit and push
+
+```bash
+# this combines git add . && git commit -m "commit message" && git push
+npm run git -- "commit message"
+```
+
+## update packages
+```bash
+npm run update:all
+```
+
+
 ## Test
 
 ```bash
