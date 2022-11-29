@@ -1,5 +1,5 @@
 export default () => ({
-    app: {
-      port: parseInt(process.env.PORT, 10) || 4000,
-    }
-  });
+  app: {
+    port: parseInt(process.env.PORT, 10) || 4000,
+  },
+});

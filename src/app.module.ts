@@ -12,7 +12,15 @@ import { ProfilesModule } from './profiles/profiles.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from './config/configuration';
 @Module({
-  imports: [UsersModule, AuthModule, FilesModule, EnterprisesModule, ShopsModule, ProductsModule, SearchModule, ProfilesModule,
+  imports: [
+    UsersModule,
+    AuthModule,
+    FilesModule,
+    EnterprisesModule,
+    ShopsModule,
+    ProductsModule,
+    SearchModule,
+    ProfilesModule,
     ConfigModule.forRoot({ isGlobal: true, load: [configuration] }),
   ],
   controllers: [AppController],

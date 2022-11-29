@@ -8,7 +8,6 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
- 
 
   app.enableCors();
   app.use(
@@ -18,7 +17,6 @@ async function bootstrap() {
   );
   app.use(compression());
 
-
   const documentBuilder = new DocumentBuilder()
     .setTitle('Drinaluza')
     .setDescription('Drinaluza API description')
@@ -27,7 +25,6 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, documentBuilder);
   SwaggerModule.setup('docs', app, document);
-
 
   await app.listen(configService.get('app.port'));
 }
