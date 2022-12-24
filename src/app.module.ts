@@ -11,6 +11,8 @@ import { SearchModule } from './search/search.module';
 import { ProfilesModule } from './profiles/profiles.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from './config/configuration';
+import { MongooseModule } from '@nestjs/mongoose';
+
 @Module({
   imports: [
     UsersModule,
@@ -22,6 +24,15 @@ import configuration from './config/configuration';
     SearchModule,
     ProfilesModule,
     ConfigModule.forRoot({ isGlobal: true, load: [configuration] }),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => ({
+        uri: configService.get('db.uri'),
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      }),
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
