@@ -7,6 +7,7 @@ export const UsersSchema = new mongoose.Schema(
     username: String,
     email: String,
     profile: { type: UserProfileSchema, select: false },
+    password: { type: String, select: false },
   },
   { timestamps: true },
 );

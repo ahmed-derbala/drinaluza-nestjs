@@ -4,7 +4,11 @@ import helmet from 'helmet';
 import * as compression from 'compression';
 import { ConfigService } from '@nestjs/config';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { VersioningType, VERSION_NEUTRAL } from '@nestjs/common';
+import {
+  ValidationPipe,
+  VersioningType,
+  VERSION_NEUTRAL,
+} from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -22,6 +26,12 @@ async function bootstrap() {
     defaultVersion: VERSION_NEUTRAL,
     type: VersioningType.URI,
   });
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+    }),
+  );
 
   const documentBuilder = new DocumentBuilder()
     .setTitle('Drinaluza')

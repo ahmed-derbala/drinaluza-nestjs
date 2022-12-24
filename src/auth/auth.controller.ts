@@ -8,34 +8,31 @@ import {
   Delete,
   VERSION_NEUTRAL,
   Version,
+  UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateAuthDto } from './dto/create-auth.dto';
+import { signupDto } from './dto/signup.dto';
+import { signinDto } from './dto/signin.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
+import { AuthGuard } from '@nestjs/passport';
+import { JwtAuthGuard } from './jwt-auth.guard';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
   @Post('/signup')
-  signup(@Body() createAuthDto: CreateAuthDto) {
-    console.log('latest');
-    return 'latest';
-    //return this.authService.signup(createAuthDto);
-  }
-  /*@Version('1')
-  @Post('/signup')
-  signupV1(@Body() createAuthDto: CreateAuthDto) {
-    console.log('v1');
-    return 'v1'
-    //return this.authService.signup(createAuthDto);
-  }*/
-
-  @Get()
-  findAll() {
-    return this.authService.findAll();
+  signup(@Body() signupDto: signupDto) {
+    return this.authService.signup(signupDto);
   }
 
-  @Get(':id')
+  @Post('/signin')
+  signin(@Body() signinDto: signinDto) {
+    return this.authService.signin(signinDto);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('a')
   findOne(@Param('id') id: string) {
     return this.authService.findOne(+id);
   }

@@ -8,4 +8,13 @@ export default () => ({
   db: {
     uri: `mongodb://localhost/${name}`,
   },
+  auth: {
+    saltOrRounds: 10,
+    jwt: {
+      secret: name,
+      signOptions: {
+        expiresIn: '30d',
+      },
+    },
+  },
 });
