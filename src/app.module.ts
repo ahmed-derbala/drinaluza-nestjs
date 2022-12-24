@@ -8,10 +8,10 @@ import { EnterprisesModule } from './enterprises/enterprises.module';
 import { ShopsModule } from './shops/shops.module';
 import { ProductsModule } from './products/products.module';
 import { SearchModule } from './search/search.module';
-import { ProfilesModule } from './profiles/profiles.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from './config/configuration';
 import { MongooseModule } from '@nestjs/mongoose';
+import { PostsModule } from './posts/posts.module';
 
 @Module({
   imports: [
@@ -22,7 +22,6 @@ import { MongooseModule } from '@nestjs/mongoose';
     ShopsModule,
     ProductsModule,
     SearchModule,
-    ProfilesModule,
     ConfigModule.forRoot({ isGlobal: true, load: [configuration] }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
@@ -33,6 +32,7 @@ import { MongooseModule } from '@nestjs/mongoose';
         useUnifiedTopology: true,
       }),
     }),
+    PostsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
