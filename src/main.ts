@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import * as compression from 'compression';
 import { ConfigService } from '@nestjs/config';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { VersioningType, VERSION_NEUTRAL } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -16,6 +17,11 @@ async function bootstrap() {
     }),
   );
   app.use(compression());
+
+  app.enableVersioning({
+    defaultVersion: VERSION_NEUTRAL,
+    type: VersioningType.URI,
+  });
 
   const documentBuilder = new DocumentBuilder()
     .setTitle('Drinaluza')

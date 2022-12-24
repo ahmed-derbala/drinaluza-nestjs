@@ -9,26 +9,22 @@ import {
   VERSION_NEUTRAL,
   Version,
 } from '@nestjs/common';
-import { AuthService } from './auth.service';
+import { AuthV1Service } from './auth.service';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
 
-@Controller('auth')
-export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+@Controller({
+  path: 'auth',
+  version: '1',
+})
+export class AuthV1Controller {
+  constructor(private readonly authService: AuthV1Service) {}
   @Post('/signup')
   signup(@Body() createAuthDto: CreateAuthDto) {
-    console.log('latest');
-    return 'latest';
+    console.log('v1');
+    return 'v1';
     //return this.authService.signup(createAuthDto);
   }
-  /*@Version('1')
-  @Post('/signup')
-  signupV1(@Body() createAuthDto: CreateAuthDto) {
-    console.log('v1');
-    return 'v1'
-    //return this.authService.signup(createAuthDto);
-  }*/
 
   @Get()
   findAll() {
