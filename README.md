@@ -32,29 +32,49 @@
 $ npm install
 ```
 
-## Running the app
+## Run
 
 ```bash
 # development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
+npm run start
 
 # production mode
-$ npm run start:prod
+npm run start:prod
+
+# watch mode
+npm run start:dev
+
+# remove /dist and run start:dev
+npm run start:devc
 ```
+
+
+## Clean
+
+```bash
+# remove /dist package-lock and node_modules
+npm run clean:a
+
+# clean:a and install packages
+npm run clean:ai
+
+# clean:ai and run 
+npm run clean:air
+
+```
+
 
 ## Faster git commit and push
 
 ```bash
-# this combines git add . && git commit -m "commit message" && git push
+# this combines git add . && git commit -m "commit message" && git push && start:devc
 npm run git -- "commit message"
 ```
 
 ## update packages
 ```bash
-npm run update:all
+# update all packages and clean:air
+npm run update:a
 ```
 
 
