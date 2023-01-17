@@ -1,4 +1,6 @@
 import {
+  HttpException,
+  HttpStatus,
   Injectable,
   NotFoundException,
   UnauthorizedException,
@@ -11,6 +13,7 @@ import { UpdateAuthDto } from './dto/update-auth.dto';
 import * as bcrypt from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
+import { Role } from './role.enum';
 
 @Injectable()
 export class AuthService {
@@ -21,18 +24,34 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  signup(signupDto: signupDto) {
+  async signup(signupDto: signupDto) {
     let userToCreate: any = signupDto;
+    //check if user already exists
+    const userExists = await this.UsersModel.findOne({ email: signupDto.email })
+      .select('_id')
+      .lean();
+    if (userExists)
+      throw new HttpException(
+        `User ${signupDto.email} already exists.`,
+        HttpStatus.CONFLICT,
+      );
+
     const salt = bcrypt.genSaltSync(this.configService.get('auth.saltRounds'));
     userToCreate.password = bcrypt.hashSync(signupDto.password, salt);
+    //default role
+    userToCreate.roles = [Role.User];
     return this.UsersModel.create(userToCreate);
   }
 
   async signin(signinDto: signinDto) {
     const user = await this.UsersModel.findOne({ email: signinDto.email })
       .lean()
-      .select('+password');
-    if (!user) throw NotFoundException;
+      .select('+password email roles');
+    if (!user)
+      throw new HttpException(
+        `User ${signinDto.email} not found`,
+        HttpStatus.NOT_FOUND,
+      );
 
     //user found, check password
     const passwordCompare = bcrypt.compareSync(
@@ -45,6 +64,7 @@ export class AuthService {
       throw UnauthorizedException;
     }
 
+    //console.log(user,'user signin token');
     return { access_token: this.jwtService.sign(user) };
   }
 
