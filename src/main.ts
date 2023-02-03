@@ -9,9 +9,15 @@ import {
   VersioningType,
   VERSION_NEUTRAL,
 } from '@nestjs/common';
+//import { MyLogger } from './core/my-logger/my-logger.service';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    //bufferLogs: true,
+    //logger: new MyLogger(),
+  });
+  //app.useLogger(app.get(MyLogger));
+  //app.useLogger(new MyLogger());
   const configService = app.get(ConfigService);
 
   app.enableCors();
@@ -34,14 +40,14 @@ async function bootstrap() {
   );
 
   const documentBuilder = new DocumentBuilder()
-    .setTitle('Drinaluza')
-    .setDescription('Drinaluza API description')
-    .setVersion('1.0')
-    .addTag('drinaluza')
+    .setTitle(configService.get('app.name'))
+    .setDescription(configService.get('app.description'))
+    .setVersion(configService.get('app.version'))
+    .addTag(configService.get('app.name'))
     .build();
   const document = SwaggerModule.createDocument(app, documentBuilder);
   SwaggerModule.setup('docs', app, document);
 
-  await app.listen(configService.get('app.port'));
+  await app.listen(configService.get('port'));
 }
 bootstrap();

@@ -1,0 +1,79 @@
+{
+	"info": {
+		"_postman_id": "77bca4c5-da99-4403-9c93-070da8fbc17d",
+		"name": "drinaluza",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2947140"
+	},
+	"item": [
+		{
+			"name": "posts",
+			"item": [
+				{
+					"name": "127.0.0.1:5000/api/posts",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"post\":{\n        \"named\":\"ahmed\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/api/posts",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "127.0.0.1:5000/api/users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyZWJiMTc0NjI4NTAyMGEzNzY0ZmE4NiIsImVtYWlsIjoiYWhtZWQuZGVyYmFsYUBlc3ByaXQudG4iLCJyb2xlIjoiYWRtaW4iLCJ0eXBlIjoidHlwZTEiLCJpc0FjdGl2ZSI6dHJ1ZSwiY3JlYXRlZEF0IjoiMjAyMi0wOC0wNFQxMTo0NTo1Ni45NzRaIiwidXBkYXRlZEF0IjoiMjAyMi0wOC0wNFQxMTo0NTo1Ni45ODVaIiwiX192IjowLCJ1c2VybmFtZSI6IjYyZWJiMTc0NjI4NTAyMGEzNzY0ZmE4NiJ9LCJpcCI6Ijo6ZmZmZjoxMjcuMC4wLjEiLCJ1c2VyQWdlbnQiOiJQb3N0bWFuUnVudGltZS83LjI5LjIiLCJpYXQiOjE2NTk2NDMwNDcsImV4cCI6MTY2MjIzNTA0N30.mwnB84iOjxdx6RQjQtagIibliqu_T36UH_iq0LWsgsU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:5000/api/users",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -41,8 +41,8 @@ npm run clean:air
 ## Faster git commit and push
 
 ```bash
-# this combines git add . && git commit -m "commit message" && git push && start:devc
-npm run git -- "commit message"
+# this combines npm run format && git add . && git commit -m "commit message" && git push && start:devc
+npm run push -- "commit message"
 ```
 
 ## update packages
@@ -51,6 +51,8 @@ npm run git -- "commit message"
 npm run update:a
 ```
 
+## Postman
+You can import postman collection located in /docs
 
 ## Test
 
@@ -64,3 +66,4 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+

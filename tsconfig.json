@@ -16,6 +16,41 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@conf/*": [
+        "src/config/*"
+      ],
+      "@core/*": [
+        "src/core/*"
+      ],
+      "@roles/*":["src/core/roles/*"],
+
+      "@mylogger/*": [
+        "src/core/my-logger/*"
+      ],
+      "@auth/*": [
+        "src/core/auth/*"
+      ],
+      "@notifications/*": [
+        "src/core/notifications/*"
+      ],
+      "@schemas/*": [
+        "src/core/schemas/*"
+      ],
+      "@basic/*": [
+        "src/basic/*"
+      ],
+      "@users/*":["src/basic/users/*"],
+      "@files/*":["src/basic/files/*"],
+      "@search/*":["src/basic/search/*"],
+
+      "@api/*":["src/api/*"],
+      "@shops/*":["src/api/shops/*"],
+      "@products/*":["src/api/products/*"],
+      "@posts/*":["src/api/posts/*"],
+
+
+    }
   }
 }
