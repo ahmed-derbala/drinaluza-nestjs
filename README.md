@@ -1,5 +1,5 @@
 ## Description
-Backend for Drinaluza which is an application to manage small business.
+Backend for Drinaluza, a mobile-first application to manage small business.
 ## First run
 
 ```bash
