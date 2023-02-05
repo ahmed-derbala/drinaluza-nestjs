@@ -14,12 +14,13 @@ import * as bcrypt from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { Role } from '@roles/role.enum';
+import { User, usersSchemaName } from '@basic/users/users.schema';
 
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectModel('users')
-    private UsersModel: Model<any>,
+    @InjectModel(usersSchemaName)
+    private UsersModel: Model<User>,
     private configService: ConfigService,
     private jwtService: JwtService,
   ) {}
@@ -32,7 +33,7 @@ export class AuthService {
       .lean();
     if (userExists)
       throw new HttpException(
-        `User ${signupDto.email} already exists.`,
+        `Email ${signupDto.email} already used.`,
         HttpStatus.CONFLICT,
       );
 

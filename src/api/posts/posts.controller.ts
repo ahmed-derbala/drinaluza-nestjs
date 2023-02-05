@@ -14,7 +14,7 @@ import { UpdatePostDto } from './dto/update-post.dto';
 import { RolesGuard } from '@roles/roles.guard';
 import { Roles } from '@roles/roles.decorator';
 import { Role } from '@roles/role.enum';
-import { JwtAuthGuard } from '@auth/jwt-auth.guard';
+import { JwtAuthGuard } from '@jwt/jwt-auth.guard';
 
 @Controller('posts')
 export class PostsController {

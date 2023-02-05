@@ -16,14 +16,22 @@ import { signupDto } from './dto/signup.dto';
 import { signinDto } from './dto/signin.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
 import { AuthGuard } from '@nestjs/passport';
-import { JwtAuthGuard } from './jwt-auth.guard';
+import { JwtAuthGuard } from '@jwt/jwt-auth.guard';
+import { HttpRestType } from '@mytypes/http-rest.type';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
   @Post('/signup')
-  signup(@Body() signupDto: signupDto) {
-    return this.authService.signup(signupDto);
+  async signup(@Body() signupDto: signupDto): Promise<HttpRestType> {
+    const createdUser = await this.authService.signup(signupDto);
+    const result: HttpRestType = {
+      pagination: null,
+      data: createdUser,
+      error: false,
+      message: 'succes',
+    };
+    return result;
   }
 
   @Post('/signin')

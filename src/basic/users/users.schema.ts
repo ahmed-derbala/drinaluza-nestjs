@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { Role } from '@roles/role.enum';
 import { UserProfileSchema } from '@schemas/user-profile.schema';
 
-export const UsersSchemaName = 'users';
+export const usersSchemaName = 'users';
 export const UsersSchema = new mongoose.Schema(
   {
     username: String,
@@ -17,3 +17,10 @@ export const UsersSchema = new mongoose.Schema(
   },
   { timestamps: true },
 );
+
+export class User {
+  username: string;
+  email: string;
+  // profile: { type: UserProfileSchema, select: false },
+  password: string;
+}

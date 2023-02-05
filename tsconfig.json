@@ -24,14 +24,18 @@
       "@core/*": [
         "src/core/*"
       ],
-      "@roles/*":["src/core/roles/*"],
-
+      "@mytypes/*": [
+        "src/core/my-types/*"
+      ],
       "@mylogger/*": [
         "src/core/my-logger/*"
       ],
       "@auth/*": [
         "src/core/auth/*"
       ],
+      "@roles/*":["src/core/auth/roles/*"],
+      "@jwt/*":["src/core/auth/jwt/*"],
+
       "@notifications/*": [
         "src/core/notifications/*"
       ],
