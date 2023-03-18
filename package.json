@@ -18,7 +18,7 @@
     "start:devc": "rm -r -f dist && npm run start:dev",
     "start:debug": "nest start --debug --watch",
     "start:code": "code . && npm run start:dev",
-    "start:prod": "node dist/main",
+    "start:prod": "NODE_ENV=production node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -30,7 +30,7 @@
     "clean:a": "rm -r -f dist && rm -f package-lock.json && rm -r -f node_modules",
     "clean:ai": "npm run clean:a && npm i",
     "clean:air": "npm run clean:ai && npm run start:dev",
-    "update:a": "cp package.json docs/package.json.backup && ncu -u && npm run clean:a && npm i --force && npm run start:dev"
+    "update:a": "cp package.json docs/package.json.backup && ncu -u && npm run clean:a && npm i && npm run start:dev"
   },
   "dependencies": {
     "@nestjs/common": "^9.3.10",
