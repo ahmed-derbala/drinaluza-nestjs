@@ -1,6 +1,9 @@
 import mongoose from 'mongoose';
 import { Role } from '@roles/role.enum';
-import { UserProfileSchema } from '@core/shared-schemas/user-profile.schema';
+import {
+  UserProfile,
+  UserProfileSchema,
+} from '@core/shared-schemas/user-profile.schema';
 
 export const usersSchemaName = 'users';
 export const UsersSchema = new mongoose.Schema(
@@ -21,6 +24,6 @@ export const UsersSchema = new mongoose.Schema(
 export class User {
   username: string;
   email: string;
-  // profile: { type: UserProfileSchema, select: false },
+  profile: UserProfile;
   password: string;
 }

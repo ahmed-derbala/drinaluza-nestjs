@@ -8,3 +8,9 @@ export const UserProfileSchema = new mongoose.Schema(
   },
   { _id: false, timestamps: true },
 );
+
+export class UserProfile {
+  firstname: string;
+  middlename: string;
+  lastname: string;
+}

@@ -9,6 +9,7 @@ import {
   VersioningType,
   VERSION_NEUTRAL,
 } from '@nestjs/common';
+import config from '@config/config';
 //import { MyLogger } from './core/my-logger/my-logger.service';
 
 async function bootstrap() {

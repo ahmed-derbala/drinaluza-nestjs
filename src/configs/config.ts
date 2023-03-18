@@ -1,4 +1,5 @@
 const name = 'drinaluza';
+
 export default () => ({
   app: {
     name,

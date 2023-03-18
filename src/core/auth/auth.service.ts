@@ -31,6 +31,7 @@ export class AuthService {
     const userExists = await this.UsersModel.findOne({ email: signupDto.email })
       .select('_id')
       .lean();
+
     if (userExists)
       throw new HttpException(
         `Email ${signupDto.email} already used.`,
@@ -41,7 +42,10 @@ export class AuthService {
     userToCreate.password = bcrypt.hashSync(signupDto.password, salt);
     //default role
     userToCreate.roles = [Role.User];
-    return this.UsersModel.create(userToCreate);
+    const createdUser = await this.UsersModel.create(userToCreate);
+    let createdUserJSON = createdUser.toJSON();
+    delete createdUserJSON.password;
+    return createdUserJSON;
   }
 
   async signin(signinDto: signinDto) {

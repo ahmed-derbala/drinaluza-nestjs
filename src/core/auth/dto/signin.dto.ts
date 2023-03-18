@@ -11,6 +11,7 @@ export class signinDto {
   email: string;
 
   @IsString()
+  @IsNotEmpty()
   @ApiProperty({
     type: String,
     description: 'password',
