@@ -21,4 +21,8 @@ export default () => ({
     },
   },
   NODE_ENV: 'local', //local or development or production
+  throttler: {
+    ttl: 60,
+    limit: 10,
+  },
 });

@@ -9,7 +9,7 @@ export const usersSchemaName = 'users';
 export const UsersSchema = new mongoose.Schema(
   {
     username: String,
-    email: String,
+    email: { unique: true, type: String },
     profile: { type: UserProfileSchema, select: false },
     password: { type: String, select: false },
     roles: {

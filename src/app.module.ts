@@ -8,7 +8,7 @@ import { ShopsModule } from '@shops/shops.module';
 import { ProductsModule } from '@products/products.module';
 import { SearchModule } from '@search/search.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import configuration from './configs/config';
+import config from './configs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PostsModule } from '@posts/posts.module';
 import { ThrottlerModule } from '@nestjs/throttler';
@@ -23,7 +23,7 @@ import { CoreModule } from './core/core.module';
     ShopsModule,
     ProductsModule,
     SearchModule,
-    ConfigModule.forRoot({ isGlobal: true, load: [configuration] }),
+    ConfigModule.forRoot({ isGlobal: true, load: [config] }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -33,10 +33,7 @@ import { CoreModule } from './core/core.module';
         useUnifiedTopology: true,
       }),
     }),
-    ThrottlerModule.forRoot({
-      ttl: 60,
-      limit: 10,
-    }),
+    ThrottlerModule.forRoot(config().throttler),
     PostsModule,
     CoreModule,
   ],

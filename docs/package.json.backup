@@ -1,6 +1,6 @@
 {
   "name": "drinaluza-nestjs",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Backend of Drinaluza. A obile-first app to manage small business",
   "author": "Ahmed Derbala <ahmed.derbala@esprit.tn>",
   "private": true,
@@ -10,7 +10,6 @@
     "url": "https://github.com/ahmed-derbala/drinaluza-nestjs"
   },
   "scripts": {
-    "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
@@ -30,7 +29,8 @@
     "clean:a": "rm -r -f dist && rm -f package-lock.json && rm -r -f node_modules",
     "clean:ai": "npm run clean:a && npm i",
     "clean:air": "npm run clean:ai && npm run start:dev",
-    "update:a": "cp package.json docs/package.json.backup && ncu -u && npm run clean:a && npm i && npm run start:dev"
+    "update:a": "cp package.json docs/package.json.backup && ncu -u && npm run clean:air",
+    "update:r": "cp docs/package.json.backup package.json && npm run clean:air"
   },
   "dependencies": {
     "@nestjs/common": "^9.3.10",
@@ -53,7 +53,6 @@
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
     "reflect-metadata": "^0.1.13",
-    "rimraf": "^4.4.0",
     "rxjs": "^7.8.0"
   },
   "devDependencies": {

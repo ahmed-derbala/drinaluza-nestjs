@@ -51,6 +51,12 @@ npm run push -- "feat(main): first commit"
 npm run update:a
 ```
 
+## restore an update backup
+```bash
+# restore /docs/package.json.backup, install packages and run application
+npm run update:r
+```
+
 ## Postman
 You can import postman collection located in /docs
 
