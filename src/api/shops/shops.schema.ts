@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { LocationSchema } from '@schemas/location.schema';
+import { LocationSchema } from '@core/shared-schemas/location.schema';
 
 export const ShopsSchemaName = 'shops';
 export const ShopsSchema = new mongoose.Schema(

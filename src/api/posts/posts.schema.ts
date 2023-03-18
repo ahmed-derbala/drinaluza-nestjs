@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { CreatorSchema } from '@schemas/creator.schema';
+import { CreatorSchema } from '@core/shared-schemas/creator.schema';
 
 export const PostsSchemaName = 'posts';
 export const PostsSchema = new mongoose.Schema(

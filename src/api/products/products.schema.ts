@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-import { CreatorSchema } from '@schemas/creator.schema';
-import { PriceSchema } from '@schemas/price.schema';
+import { CreatorSchema } from '@core/shared-schemas/creator.schema';
+import { PriceSchema } from '@core/shared-schemas/price.schema';
 import { ShopsSchemaName } from '@shops/shops.schema';
 
 export const ProductsSchemaName = 'products';

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { Role } from '@roles/role.enum';
-import { UserProfileSchema } from '@schemas/user-profile.schema';
+import { UserProfileSchema } from '@core/shared-schemas/user-profile.schema';
 
 export const usersSchemaName = 'users';
 export const UsersSchema = new mongoose.Schema(

@@ -1,6 +1,9 @@
 # config
 /configs/config.ts
 
+# docs
+/docs/package.json.backup
+
 # compiled output
 /dist
 /node_modules
