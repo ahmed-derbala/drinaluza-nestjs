@@ -42,12 +42,12 @@ npm run clean:air
 
 ```bash
 # this combines npm run format && git add . && git commit -m "commit message" && git push && start:devc
-npm run push -- "commit message"
+npm run push -- "feat(main): first commit"
 ```
 
 ## update packages
 ```bash
-# update all packages and clean:air
+# make a backup of package.json in /docs, update all packages, install them and start the application
 npm run update:a
 ```
 
