@@ -42,13 +42,9 @@
       "@schemas/*": [
         "src/core/schemas/*"
       ],
-      "@basic/*": [
-        "src/basic/*"
-      ],
-      "@users/*":["src/basic/users/*"],
-      "@files/*":["src/basic/files/*"],
-      "@search/*":["src/basic/search/*"],
-
+      "@users/*":["src/api/users/*"],
+      "@files/*":["src/core/files/*"],
+      "@search/*":["src/core/search/*"],
       "@api/*":["src/api/*"],
       "@shops/*":["src/api/shops/*"],
       "@products/*":["src/api/products/*"],
