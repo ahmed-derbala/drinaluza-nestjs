@@ -8,7 +8,7 @@ import { ShopsModule } from '@shops/shops.module';
 import { ProductsModule } from '@products/products.module';
 import { SearchModule } from '@search/search.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import configuration from './config/configuration';
+import configuration from './config/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PostsModule } from '@posts/posts.module';
 import { ThrottlerModule } from '@nestjs/throttler';
