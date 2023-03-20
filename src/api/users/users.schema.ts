@@ -4,6 +4,10 @@ import {
   UserProfile,
   UserProfileSchema,
 } from '@core/shared-schemas/user-profile.schema';
+import {
+  UserSettingsEntity,
+  UserSettingsSchema,
+} from '@core/user-settings/user-settings.schema';
 
 export const usersSchemaName = 'users';
 export const UsersSchema = new mongoose.Schema(
@@ -17,13 +21,18 @@ export const UsersSchema = new mongoose.Schema(
       required: true,
       enum: Object.values(Role),
     },
+    settings: { type: UserSettingsSchema, select: false },
+    ff: { type: String, default: 'hh' },
   },
   { timestamps: true },
 );
 
-export class User {
+export class UserEntity {
   username: string;
   email: string;
   profile: UserProfile;
   password: string;
+  roles: string[];
+  settings: UserSettingsEntity;
+  ff: string;
 }

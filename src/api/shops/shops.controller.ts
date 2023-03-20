@@ -1,3 +1,4 @@
+import { ConnectedUser } from '@core/auth/connected-user.decorator';
 import {
   Controller,
   Get,
@@ -6,18 +7,22 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { authenticate } from 'passport';
+import { CreateShopDto, ShopDto } from './shops.schema';
 import { ShopsService } from './shops.service';
-import { CreateShopDto } from './dto/create-shop.dto';
-import { UpdateShopDto } from './dto/update-shop.dto';
 
+@UseGuards(AuthGuard('jwt'))
 @Controller('shops')
 export class ShopsController {
   constructor(private readonly shopsService: ShopsService) {}
 
   @Post()
-  create(@Body() createShopDto: CreateShopDto) {
-    return this.shopsService.create(createShopDto);
+  create(@Body() createShopDto: CreateShopDto, @ConnectedUser() connectedUser) {
+    const shop: ShopDto = { ...createShopDto, userId: connectedUser._id };
+    return this.shopsService.create(shop);
   }
 
   @Get()
@@ -28,11 +33,6 @@ export class ShopsController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.shopsService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateShopDto: UpdateShopDto) {
-    return this.shopsService.update(+id, updateShopDto);
   }
 
   @Delete(':id')

@@ -1,7 +1,7 @@
 {
   "name": "drinaluza-nestjs",
   "version": "0.0.4",
-  "description": "Backend of Drinaluza. A obile-first app to manage small business",
+  "description": "Backend of Drinaluza. A mobile-first app to manage small business",
   "author": "Ahmed Derbala <ahmed.derbala@esprit.tn>",
   "private": true,
   "license": "UNLICENSED",

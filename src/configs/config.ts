@@ -25,4 +25,11 @@ export default () => ({
     ttl: 60,
     limit: 10,
   },
+  logs: {
+    logger: false,
+  },
+  notifications: {
+    email: true,
+    sms: false,
+  },
 });

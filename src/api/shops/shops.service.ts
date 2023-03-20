@@ -1,11 +1,24 @@
 import { Injectable } from '@nestjs/common';
-import { CreateShopDto } from './dto/create-shop.dto';
-import { UpdateShopDto } from './dto/update-shop.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import {
+  CreateShopDto,
+  ShopDto,
+  ShopsEntity,
+  ShopsSchemaName,
+} from './shops.schema';
 
 @Injectable()
 export class ShopsService {
-  create(createShopDto: CreateShopDto) {
-    return 'This action adds a new shop';
+  constructor(
+    @InjectModel(ShopsSchemaName)
+    private ShopsModel: Model<ShopsEntity>,
+  ) {}
+
+  create(shopDto: ShopDto) {
+    console.log(shopDto, 'shopDto');
+
+    return this.ShopsModel.create(shopDto);
   }
 
   findAll() {
@@ -14,10 +27,6 @@ export class ShopsService {
 
   findOne(id: number) {
     return `This action returns a #${id} shop`;
-  }
-
-  update(id: number, updateShopDto: UpdateShopDto) {
-    return `This action updates a #${id} shop`;
   }
 
   remove(id: number) {

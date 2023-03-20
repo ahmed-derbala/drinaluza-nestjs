@@ -1,11 +1,32 @@
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { CreateNotificationDto } from './dto/create-notification.dto';
 import { UpdateNotificationDto } from './dto/update-notification.dto';
+import {
+  NotificationsEntity,
+  notificationsSchemaName,
+} from './notifications.schema';
 
 @Injectable()
 export class NotificationsService {
-  create(createNotificationDto: CreateNotificationDto) {
-    return 'This action adds a new notification';
+  constructor(
+    @InjectModel(notificationsSchemaName)
+    private NotificationsModel: Model<NotificationsEntity>,
+    private configService: ConfigService,
+  ) {}
+
+  create({ userIds, subject, content, sendType, sendAt }) {
+    if (sendType === 'instant') {
+      sendAt = Date.now();
+    }
+    let notificationsData = userIds.map((id) => {
+      return { userId: id, subject, content, sendType, sendAt };
+    });
+
+    //save notifications to db
+    this.NotificationsModel.insertMany(notificationsData);
   }
 
   findAll() {

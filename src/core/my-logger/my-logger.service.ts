@@ -6,6 +6,9 @@ export class MyLogger implements LoggerService {
    */
   log(message: any, ...optionalParams: any[]) {
     console.log('log');
+    console.log(message);
+
+    console.log(optionalParams);
   }
 
   /**
