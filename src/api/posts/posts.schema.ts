@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
-import { CreatorSchema } from '@core/shared-schemas/creator.schema';
+import { CreatedBySchema } from '@core/shared-schemas/created-by.schema';
 
 export const PostsSchemaName = 'posts';
 export const PostsSchema = new mongoose.Schema(
   {
-    creator: CreatorSchema,
+    createdBy: CreatedBySchema,
     html: String,
     tags: [String],
   },

@@ -10,14 +10,14 @@ export const UserSettingsSchema = new mongoose.Schema(
       emails: {},
       sms: {},
     },
-    middlename: String,
-    lastname: String,
   },
-  { _id: false, timestamps: true },
+  { timestamps: true },
 );
 
 export class UserSettingsEntity {
-  enabled: boolean;
-  emails: any;
-  sms: any;
+  notifications: {
+    enabled: boolean;
+    emails: any;
+    sms: any;
+  };
 }

@@ -34,5 +34,4 @@ export class UserEntity {
   password: string;
   roles: string[];
   settings: UserSettingsEntity;
-  ff: string;
 }

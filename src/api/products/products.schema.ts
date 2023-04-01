@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { CreatorSchema } from '@core/shared-schemas/creator.schema';
+import { CreatedBySchema } from '@core/shared-schemas/created-by.schema';
 import { PriceSchema } from '@core/shared-schemas/price.schema';
 import { ShopsSchemaName } from '@shops/shops.schema';
 
@@ -8,7 +8,7 @@ export const ProductsSchema = new mongoose.Schema(
   {
     name: String,
     email: String,
-    creator: CreatorSchema,
+    createdBy: CreatedBySchema,
     shopIds: [
       {
         type: mongoose.Schema.Types.ObjectId,

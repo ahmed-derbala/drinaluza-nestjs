@@ -10,6 +10,12 @@ export default () => ({
   port: parseInt(process.env.PORT, 10) || 5000,
   db: {
     uri: `mongodb://localhost/${name}`,
+    options: {
+      maxPoolSize: 200,
+      minPoolSize: 5,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    },
   },
   auth: {
     saltOrRounds: 10,

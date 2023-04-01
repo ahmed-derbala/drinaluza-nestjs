@@ -1,8 +1,11 @@
 ## Description
 Backend for Drinaluza, a mobile-first application to manage small business.
+
+
 ## First run
 
 ```bash
+# create /src/configs/config.ts based on /src/configs/config.sample.ts, install packages and satrt with vscode
 cp src/configs/config.sample.ts src/configs/config.ts && npm i && npm run start:code
 ```
 

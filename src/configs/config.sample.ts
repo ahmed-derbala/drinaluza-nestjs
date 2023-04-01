@@ -1,4 +1,5 @@
 const name = 'drinaluza';
+
 export default () => ({
   app: {
     name,
@@ -9,6 +10,12 @@ export default () => ({
   port: parseInt(process.env.PORT, 10) || 5000,
   db: {
     uri: `mongodb://localhost/${name}`,
+    options: {
+      maxPoolSize: 200,
+      minPoolSize: 5,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    },
   },
   auth: {
     saltOrRounds: 10,
@@ -20,4 +27,15 @@ export default () => ({
     },
   },
   NODE_ENV: 'local', //local or development or production
+  throttler: {
+    ttl: 60,
+    limit: 10,
+  },
+  logs: {
+    logger: false,
+  },
+  notifications: {
+    email: true,
+    sms: false,
+  },
 });

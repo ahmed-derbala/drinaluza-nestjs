@@ -14,6 +14,7 @@ import { PostsModule } from '@posts/posts.module';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { MyLoggerMiddleware } from './core/my-logger/my-logger.middleware';
 import { CoreModule } from './core/core.module';
+import { TimelineModule } from './api/timeline/timeline.module';
 
 @Module({
   imports: [
@@ -29,13 +30,13 @@ import { CoreModule } from './core/core.module';
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
         uri: configService.get('db.uri'),
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
+        ...config().db.options,
       }),
     }),
     ThrottlerModule.forRoot(config().throttler),
     PostsModule,
     CoreModule,
+    TimelineModule,
   ],
   controllers: [AppController],
   providers: [AppService],
