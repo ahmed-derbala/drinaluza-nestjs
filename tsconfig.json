@@ -33,21 +33,39 @@
       "@auth/*": [
         "src/core/auth/*"
       ],
-      "@roles/*":["src/core/auth/roles/*"],
-      "@jwt/*":["src/core/auth/jwt/*"],
-
+      "@roles/*": [
+        "src/core/auth/roles/*"
+      ],
+      "@jwt/*": [
+        "src/core/auth/jwt/*"
+      ],
       "@notifications/*": [
         "src/core/notifications/*"
       ],
       "@shared-schemas/*": [
         "src/core/shared-schemas/*"
       ],
-      "@users/*":["src/api/users/*"],
-      "@files/*":["src/core/files/*"],
-      "@search/*":["src/core/search/*"],
-      "@shops/*":["src/api/shops/*"],
-      "@products/*":["src/api/products/*"],
-      "@posts/*":["src/api/posts/*"],
+      "@pagination/*": [
+        "src/core/pagination/*"
+      ],
+      "@users/*": [
+        "src/api/users/*"
+      ],
+      "@files/*": [
+        "src/core/files/*"
+      ],
+      "@search/*": [
+        "src/core/search/*"
+      ],
+      "@shops/*": [
+        "src/api/shops/*"
+      ],
+      "@products/*": [
+        "src/api/products/*"
+      ],
+      "@posts/*": [
+        "src/api/posts/*"
+      ],
     }
   }
 }

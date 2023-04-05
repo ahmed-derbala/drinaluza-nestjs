@@ -29,8 +29,8 @@ import { TimelineModule } from './api/timeline/timeline.module';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
-        uri: configService.get('db.uri'),
-        ...config().db.options,
+        uri: configService.get('db.mongo.uri'),
+        ...config().db.mongo.options,
       }),
     }),
     ThrottlerModule.forRoot(config().throttler),

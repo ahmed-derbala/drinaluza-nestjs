@@ -1,10 +1,7 @@
+import config from '@config/config';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNumber, IsOptional, Max, Min } from 'class-validator';
-import mongoose from 'mongoose';
-
-const minLimit = 1,
-  defaultLimit = 100,
-  maxLimit = 300;
+import mongoose, { Model } from 'mongoose';
 
 export const paginate = async ({
   model,
@@ -14,6 +11,14 @@ export const paginate = async ({
   select = '',
   sort = {},
   populate = [],
+}: {
+  model: Model<any>;
+  page: number;
+  limit: number;
+  match: any;
+  select: string;
+  sort: any;
+  populate: any[];
 }) => {
   page = processPage(page);
   limit = processLimit(limit);
@@ -36,7 +41,7 @@ export const paginate = async ({
   const data = await model.find(match, select, options);
 
   return {
-    pagination_metadata: {
+    pagination: {
       totalDocs,
       totalPages,
       page,
@@ -56,6 +61,11 @@ export const aggregatePaginate = async ({
   page,
   limit,
   pipeline = [],
+}: {
+  model: Model<any>;
+  page: number;
+  limit: number;
+  pipeline: any[];
 }) => {
   page = processPage(page);
   limit = processLimit(limit);
@@ -116,29 +126,32 @@ export const aggregatePaginate = async ({
   let result: any = {};
   if (sortIndex > -1 && matchIndex > sortIndex)
     result.message = `its advised to have $match stage before $sort`;
-  result.pagination_metadata = {};
-  //console.log(pipeline[matchIndex]['$match'], '$match');
-  result.pagination_metadata.totalDocs = await model.countDocuments(
-    pipeline[matchIndex]['$match'] || {},
-  );
-  //console.log(result.pagination_metadata.totalDocs, 'result.pagination_metadata.totalDocs');
+  result.pagination = {};
 
-  const totalPages = Math.ceil(result.pagination_metadata.totalDocs / limit);
+  if (matchIndex > -1)
+    result.pagination.totalDocs = await model.countDocuments(
+      pipeline[matchIndex]['$match'],
+    );
+  else result.pagination.totalDocs = await model.countDocuments({});
 
-  result.pagination_metadata.totalPages = totalPages;
+  //console.log(result.pagination.totalDocs, 'result.pagination.totalDocs');
 
-  result.pagination_metadata.page = page;
-  result.pagination_metadata.limit = limit;
+  const totalPages = Math.ceil(result.pagination.totalDocs / limit);
+
+  result.pagination.totalPages = totalPages;
+
+  result.pagination.page = page;
+  result.pagination.limit = limit;
 
   const { nextPage, hasNextPage } = processNext({ page, totalPages });
-  result.pagination_metadata.hasNextPage = hasNextPage;
-  result.pagination_metadata.nextPage = nextPage;
+  result.pagination.hasNextPage = hasNextPage;
+  result.pagination.nextPage = nextPage;
 
   const { prevPage, hasPrevPage } = processPrevious({ page });
-  result.pagination_metadata.hasPrevPage = hasPrevPage;
-  result.pagination_metadata.prevPage = prevPage;
+  result.pagination.hasPrevPage = hasPrevPage;
+  result.pagination.prevPage = prevPage;
 
-  result.pagination_metadata.returnedDocsCount = data.length;
+  result.pagination.returnedDocsCount = data.length;
 
   result.data = data;
 
@@ -146,9 +159,11 @@ export const aggregatePaginate = async ({
 };
 
 let processLimit = (limit) => {
-  limit = parseInt(limit) || defaultLimit;
-  if (limit < minLimit) limit = minLimit;
-  if (limit > maxLimit) limit = maxLimit;
+  limit = parseInt(limit) || config().pagination.mongoose.defaultLimit;
+  if (limit < config().pagination.mongoose.minLimit)
+    limit = config().pagination.mongoose.minLimit;
+  if (limit > config().pagination.mongoose.maxLimit)
+    limit = config().pagination.mongoose.maxLimit;
   return limit;
 };
 
@@ -192,17 +207,17 @@ export class PaginationDto {
     type: Number,
     description: 'page',
   })
-  public page: Number;
+  public page: number;
 
   @IsOptional()
   @IsNumber()
-  @Min(minLimit)
-  @Max(maxLimit)
+  @Min(config().pagination.mongoose.minLimit)
+  @Max(config().pagination.mongoose.maxLimit)
   @ApiProperty({
     type: Number,
     description: 'limit',
   })
-  public limit: Number;
+  public limit: number;
 }
 
 export class PageDto {
@@ -213,17 +228,17 @@ export class PageDto {
     type: Number,
     description: 'page',
   })
-  public page: Number;
+  public page: number;
 }
 
 export class LimitDto {
   @IsOptional()
   @IsNumber()
-  @Min(minLimit)
-  @Max(maxLimit)
+  @Min(config().pagination.mongoose.minLimit)
+  @Max(config().pagination.mongoose.maxLimit)
   @ApiProperty({
     type: Number,
     description: 'limit',
   })
-  public limit: Number;
+  public limit: number;
 }

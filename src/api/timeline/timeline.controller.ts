@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { TimelineService } from './timeline.service';
 import { CreateTimelineDto } from './dto/create-timeline.dto';
@@ -21,8 +22,8 @@ export class TimelineController {
   }
 
   @Get()
-  findAll() {
-    return this.timelineService.findAll();
+  find(@Query() query) {
+    return this.timelineService.find();
   }
 
   @Get(':id')
