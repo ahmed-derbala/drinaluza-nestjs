@@ -10,7 +10,7 @@ export default () => ({
   port: parseInt(process.env.PORT, 10) || 5000,
   db: {
     mongo: {
-      uri: `mongodb://localhost/${name}`,
+      uri: `mongodb://127.0.0.1/${name}`,
       options: {
         maxPoolSize: 200,
         minPoolSize: 5,

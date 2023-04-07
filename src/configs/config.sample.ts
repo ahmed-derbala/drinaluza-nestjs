@@ -9,12 +9,14 @@ export default () => ({
   },
   port: parseInt(process.env.PORT, 10) || 5000,
   db: {
-    uri: `mongodb://localhost/${name}`,
-    options: {
-      maxPoolSize: 200,
-      minPoolSize: 5,
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+    mongo: {
+      uri: `mongodb://127.0.0.1/${name}`,
+      options: {
+        maxPoolSize: 200,
+        minPoolSize: 5,
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      },
     },
   },
   auth: {
@@ -37,5 +39,12 @@ export default () => ({
   notifications: {
     email: true,
     sms: false,
+  },
+  pagination: {
+    mongoose: {
+      minLimit: 1,
+      defaultLimit: 100,
+      maxLimit: 300,
+    },
   },
 });
