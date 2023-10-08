@@ -3,7 +3,7 @@ import mongoose, {
   isValidObjectId,
   ObjectId,
 } from 'mongoose';
-import { LocationSchema } from '@core/shared-schemas/location.schema';
+import { LocationSchema } from '@core/schemas/location.schema';
 import { usersSchemaName } from '@users/users.schema';
 import { IsEmail, isEmail, IsNotEmpty, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';

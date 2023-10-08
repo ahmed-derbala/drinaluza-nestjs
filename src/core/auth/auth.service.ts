@@ -15,6 +15,7 @@ import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { Role } from '@roles/role.enum';
 import { UserEntity, usersSchemaName } from '@users/users.schema';
+import { AuthTranslationsService } from '@core/translations/auth.translations.service';
 
 @Injectable()
 export class AuthService {
@@ -52,6 +53,7 @@ export class AuthService {
     const user = await this.UsersModel.findOne({ email: signinDto.email })
       .lean()
       .select('+password email roles');
+
     if (!user)
       throw new HttpException(
         `User ${signinDto.email} not found`,
@@ -70,7 +72,7 @@ export class AuthService {
     }
 
     //console.log(user,'user signin token');
-    return { accessToken: this.jwtService.sign(user) };
+    return { accessToken: this.jwtService.sign(user), user };
   }
 
   findOne(id: number) {

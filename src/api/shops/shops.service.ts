@@ -7,6 +7,7 @@ import {
   ShopsEntity,
   ShopsSchemaName,
 } from './shops.schema';
+import { paginate } from '@core/pagination/mongoose.pagination';
 
 @Injectable()
 export class ShopsService {
@@ -22,7 +23,7 @@ export class ShopsService {
   }
 
   findAll() {
-    return `This action returns all shops`;
+    return paginate({ model: this.ShopsModel });
   }
 
   findOne(id: number) {

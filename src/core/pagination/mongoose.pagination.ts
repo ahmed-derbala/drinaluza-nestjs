@@ -13,15 +13,17 @@ export const paginate = async ({
   populate = [],
 }: {
   model: Model<any>;
-  page: number;
-  limit: number;
-  match: any;
-  select: string;
-  sort: any;
-  populate: any[];
+  page?: number;
+  limit?: number;
+  match?: any;
+  select?: string;
+  sort?: any;
+  populate?: any[];
 }) => {
-  page = processPage(page);
-  limit = processLimit(limit);
+  page = page ? processPage(page) : 1;
+  limit = limit
+    ? processLimit(limit)
+    : config().pagination.mongoose.defaultLimit;
   const totalDocs = await model.countDocuments(match);
   const totalPages = Math.ceil(totalDocs / limit);
   const skip = processSkip({ limit, page });

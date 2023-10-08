@@ -42,8 +42,8 @@
       "@notifications/*": [
         "src/core/notifications/*"
       ],
-      "@shared-schemas/*": [
-        "src/core/shared-schemas/*"
+      "@schemas/*": [
+        "src/core/schemas/*"
       ],
       "@pagination/*": [
         "src/core/pagination/*"
@@ -65,6 +65,9 @@
       ],
       "@posts/*": [
         "src/api/posts/*"
+      ],
+      "@error/*": [
+        "src/core/error/*"
       ],
     }
   }

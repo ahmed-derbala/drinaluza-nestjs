@@ -1,6 +1,9 @@
 export type HttpRestType = {
   pagination: any;
   data: any;
-  message: string;
-  error: boolean;
+  message: {
+    code: string;
+    text: string;
+  };
+  error: any;
 };

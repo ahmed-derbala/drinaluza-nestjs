@@ -3,7 +3,7 @@ import { Role } from '@roles/role.enum';
 import {
   UserProfile,
   UserProfileSchema,
-} from '@core/shared-schemas/user-profile.schema';
+} from '@core/schemas/user-profile.schema';
 import {
   UserSettingsEntity,
   UserSettingsSchema,
@@ -22,7 +22,6 @@ export const UsersSchema = new mongoose.Schema(
       enum: Object.values(Role),
     },
     settings: { type: UserSettingsSchema, select: false },
-    ff: { type: String, default: 'hh' },
   },
   { timestamps: true },
 );

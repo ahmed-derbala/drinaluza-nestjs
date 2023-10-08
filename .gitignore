@@ -1,8 +1,10 @@
 # config
 /configs/config.ts
 
-# docs
-/docs/package.json.backup
+# backups
+/.backups/*
+
+/src/upload/
 
 # compiled output
 /dist

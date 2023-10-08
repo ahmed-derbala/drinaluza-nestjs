@@ -50,13 +50,13 @@ npm run push -- "feat(main): first commit"
 
 ## update packages
 ```bash
-# make a backup of package.json in /docs, update all packages, install them and start the application
+# make a backup of package.json, update all packages, install them and start the application
 npm run update:a
 ```
 
 ## restore an update backup
 ```bash
-# restore /docs/package.json.backup, install packages and run application
+# restore the backup of package.json, install packages and run application
 npm run update:r
 ```
 
